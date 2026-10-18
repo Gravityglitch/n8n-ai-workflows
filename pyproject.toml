@@ -1,0 +1,56 @@
+[project]
+name = "n8n-ai-workflows"
+version = "1.0.0"
+description = "Importable n8n AI workflows plus a FastAPI sidecar for lead scoring, email triage, summarisation and human-approved writes."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Vikrant Reddy" }]
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.80",
+    "fastapi>=0.115",
+    "httpx>=0.27",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "sqlalchemy>=2.0",
+    "structlog>=24.4",
+    "tenacity>=9.0",
+    "uvicorn>=0.32",
+]
+
+[project.scripts]
+lint-workflows = "tools.lint_workflows:main"
+n8n-patch = "tools.n8n_patch:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sidecar", "tools"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["error::DeprecationWarning:sidecar.*", "error::DeprecationWarning:tools.*"]
+
+[tool.coverage.run]
+source = ["sidecar", "tools"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true

@@ -1,0 +1,41 @@
+# n8n + the Python sidecar. Copy .env.example to .env first; SIDECAR_API_KEY is the shared secret.
+services:
+  sidecar:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      API_KEYS: ${SIDECAR_API_KEY:-change-me}
+      DATABASE_URL: sqlite:////app/var/sidecar.db
+      # The sidecar must be able to resume n8n Wait nodes; dry_run only logs the call.
+      N8N_CALLBACK_MODE: ${N8N_CALLBACK_MODE:-live}
+    volumes:
+      - sidecar_data:/app/var
+    restart: unless-stopped
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:1.100.1
+    ports:
+      - "5678:5678"
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      WEBHOOK_URL: http://localhost:5678/
+      GENERIC_TIMEZONE: Asia/Kolkata
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY:-change-me-too}
+      # Workflows read {{ $env.SIDECAR_URL }} / {{ $env.SIDECAR_API_KEY }} in HTTP Request nodes.
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: "false"
+      SIDECAR_URL: http://sidecar:8000
+      SIDECAR_API_KEY: ${SIDECAR_API_KEY:-change-me}
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./workflows:/workflows:ro
+    depends_on:
+      - sidecar
+    restart: unless-stopped
+
+volumes:
+  sidecar_data:
+  n8n_data:

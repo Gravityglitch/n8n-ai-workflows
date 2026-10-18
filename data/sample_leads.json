@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Priya Natarajan",
+    "email": "priya@northwind-analytics.test",
+    "company": "Northwind Analytics",
+    "role": "VP Engineering",
+    "company_size": 350,
+    "budget_usd": 25000,
+    "message": "We need to integrate an AI scoring step into our existing n8n lead pipeline and push qualified leads to HubSpot. Looking for a quote and timeline for a 6-week implementation.",
+    "source": "web_form"
+  },
+  {
+    "name": "Tom Okafor",
+    "email": "tom.okafor@gmail.com",
+    "company": null,
+    "role": "Student",
+    "company_size": null,
+    "budget_usd": null,
+    "message": "hi, curious how this works",
+    "source": "web_form"
+  },
+  {
+    "name": "Lena Fischer",
+    "email": "lena@fischer-consulting.test",
+    "company": "Fischer Consulting",
+    "role": "Owner",
+    "company_size": 12,
+    "budget_usd": 3000,
+    "message": "Could you give me pricing for automating my weekly client reports?",
+    "source": "referral"
+  }
+]

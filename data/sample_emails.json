@@ -1,0 +1,32 @@
+[
+  {
+    "id": "msg-1001",
+    "from": "ops@contoso-logistics.test",
+    "subject": "URGENT: webhook integration broken since last night",
+    "body": "Our n8n webhook returns 500 and orders are not syncing. Please can you look at this today? We need to restore the sync before the 6pm cutoff."
+  },
+  {
+    "id": "msg-1002",
+    "from": "sarah@brightpath-edu.test",
+    "subject": "Quote for Gmail triage automation",
+    "body": "We saw your demo and would like pricing for a Gmail triage workflow with Slack digests for a team of 15. Could you send a proposal by Friday?"
+  },
+  {
+    "id": "msg-1003",
+    "from": "billing@cloudhost.test",
+    "subject": "Invoice #48213 is overdue",
+    "body": "Your invoice for September is 7 days overdue. Payment of $240 is required to avoid service interruption."
+  },
+  {
+    "id": "msg-1004",
+    "from": "news@automation-weekly.test",
+    "subject": "Automation Weekly newsletter - issue 212",
+    "body": "This week's digest: five new n8n nodes, a webinar on AI agents, and more. Unsubscribe at any time."
+  },
+  {
+    "id": "msg-1005",
+    "from": "winner@lucky-draw.test",
+    "subject": "You have won a crypto giveaway!!!",
+    "body": "Act now to claim your prize. Send 0.1 BTC to verify your wallet."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "url": "https://example.com/blog/release-notes",
+    "title": "Release notes - October",
+    "text": "<html><head><title>Release notes</title><style>p{}</style></head><body><h1>October release</h1><p>This release adds a native approval node for human-in-the-loop flows. Workflows can now pause until a reviewer responds. Execution data is retained for 30 days by default.</p><p>The HTTP Request node gained per-request timeouts. Retries now use exponential backoff. The Slack node supports threaded replies. Credential rotation no longer requires a restart.</p><script>track()</script></body></html>"
+  },
+  {
+    "url": "https://example.com/blog/pricing-update",
+    "title": null,
+    "text": "Pricing update. Starting January the starter plan includes 2,500 executions per month. The team plan adds shared credentials and audit logs. Enterprise customers keep custom limits. Existing subscribers are grandfathered for twelve months. Annual billing receives a 15 percent discount."
+  },
+  {
+    "url": "https://example.com/docs/changelog",
+    "title": "Changelog",
+    "text": ""
+  }
+]

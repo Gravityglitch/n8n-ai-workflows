@@ -1,0 +1,11 @@
+{
+  "parameters": {
+    "compare": "selectedFields",
+    "fieldsToCompare": "email",
+    "options": {}
+  },
+  "id": "d0d0d0d0-0000-4c1e-9a00-00000000dedu",
+  "name": "Dedupe by Email",
+  "type": "n8n-nodes-base.removeDuplicates",
+  "typeVersion": 1.1
+}

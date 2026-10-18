@@ -1,0 +1,70 @@
+{
+  "name": "Deliberately broken workflow (lint fixture)",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "options": {} },
+      "id": "bad-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000/score",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-API-Key", "value": "sk-live-abcdefghijklmnopqrstuvwxyz0123456789" },
+            { "name": "Authorization", "value": "Bearer abcdefghijklmnopqrstuvwxyz0123456789" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bad-2",
+      "name": "Score",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": { "method": "POST", "url": "={{ $env.SIDECAR_URL }}/triage", "options": {} },
+      "id": "bad-3",
+      "name": "Score",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": { "resume": "webhook", "options": {} },
+      "id": "bad-4",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": "nope"
+    },
+    {
+      "parameters": { "text": "hello" },
+      "id": "bad-5",
+      "name": "Slack",
+      "type": "custom-nodes.slack",
+      "typeVersion": 1,
+      "position": [660, 0],
+      "credentials": { "slackApi": { "id": "1", "name": "Slack", "token": "xoxb-1234567890-abcdef" } }
+    },
+    {
+      "parameters": {},
+      "id": "bad-6",
+      "name": "Orphan",
+      "type": "n8n-nodes-base.set",
+      "position": [880, 0]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Score", "type": "main", "index": 0 }]] },
+    "Score": { "main": [[{ "node": "Does Not Exist", "type": "main", "index": 0 }]] },
+    "Ghost": { "main": [[{ "node": "Webhook", "type": "main", "index": 0 }]] }
+  },
+  "settings": {}
+}
